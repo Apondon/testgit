@@ -1,0 +1,58 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "658035",
+      "name": "钱",
+      "font_class": "qian",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "1271772",
+      "name": "操作-开关",
+      "font_class": "caozuo-kaiguan",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "1297810",
+      "name": "操作-壁灯",
+      "font_class": "caozuo_bideng",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "2848758",
+      "name": "报表",
+      "font_class": "baobiao",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "3703008",
+      "name": "库存管理",
+      "font_class": "navicon-kcgl",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "6008027",
+      "name": "换",
+      "font_class": "huan",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "11398798",
+      "name": "crown",
+      "font_class": "crown",
+      "unicode": "e53d",
+      "unicode_decimal": 58685
+    }
+  ]
+}

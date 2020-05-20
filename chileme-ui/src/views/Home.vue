@@ -18,7 +18,7 @@
                 div.menuBtn
                    span.iconfont &#xe63f;
                    i 报表
-                div.menuBtn
+                div.menuBtn(@click="jumpTo('/lifeCycle')")
                    span.iconfont &#xe65e;
                    i 辅助
                 div.menuBtn
@@ -26,7 +26,8 @@
                    i 退出                
           el-col(:span='23')
               div.gridrt
-                  router-view
+                  keep-alive
+                      router-view
 </template>
 
 <script>

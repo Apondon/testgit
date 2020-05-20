@@ -19,14 +19,40 @@
                                 span.uItemsPrice  {{`￥${o.price}元`}}
                     //- 商品分类
                     div.splitGoods
-                        el-tabs(v-model="menuActiveName")
-                            el-tab-pane(v-for='i in sGoods',:key='i.id',:label="i.name",:name="i.code")
-                                div.sGoodsContent
-                                    div.goodsItem
-                                        div.goodsPic 
-                                        div.goodsDes 
-                                            div.goodsDesName {{i.name}}
-                                            div.goodsDesPrice ￥10元
+                        el-tabs
+                            el-tab-pane(label="热菜" )
+                                div
+                                    div.sGoodsContent
+                                        div.goodsItem(v-for='item in hotFoods',:key='item.id')
+                                            div.goodsPic 
+                                            div.goodsDes 
+                                                div.goodsDesName {{item.goodname}}
+                                                el-rate(v-model="item.rate",disabled)
+                                                div.goodsDesPrice {{`价格: ${item.price}`}}
+                            el-tab-pane(label="凉菜" )
+                                div
+                                    div.sGoodsContent
+                                        div.goodsItem(v-for='item in coldFoods',:key='item.id')
+                                            div.goodsPic 
+                                            div.goodsDes 
+                                                div.goodsDesName {{item.goodname}}
+                                                div.goodsDesPrice {{`价格: ${item.price}`}}
+                            el-tab-pane(label="主食" )
+                                div
+                                    div.sGoodsContent
+                                        div.goodsItem(v-for='item in stampFood',:key='item.id')
+                                            div.goodsPic 
+                                            div.goodsDes 
+                                                div.goodsDesName {{item.goodname}}
+                                                div.goodsDesPrice {{`价格: ${item.price}`}}
+                            el-tab-pane(label="饮料" )
+                                div
+                                    div.sGoodsContent
+                                        div.goodsItem(v-for='item in drinks',:key='item.id')
+                                            div.goodsPic 
+                                            div.goodsDes 
+                                                div.goodsDesName {{item.goodname}}
+                                                div.goodsDesPrice {{`价格: ${item.price}`}}
 </template>
 <script>
 import Carts from '@/components/Carts.vue'
@@ -56,9 +82,25 @@ export default {
                 {id:3,name:'饮料',code:'drink'}
             ],
             // 分类页签中的商品数据
-            iGoods:[
-              {id:1,goodname:'',price:10}  
-            ]
+            hotFoods:[
+              {id:'ht001',goodname:'hot1',price:11,rate:3},  
+              {id:'ht002',goodname:'hot2',price:11.2,rate:3},
+              {id:'ht003',goodname:'hot3',price:16,rate:3}
+            ],
+            coldFoods:[
+                {id:'cd001',goodname:'cold1',price:7,rate:3},
+                {id:'cd002',goodname:'cold2',price:8,rate:3},
+                {id:'cd003',goodname:'cold3',price:9,rate:3}
+            ],
+            stampFood:[
+                {id:'st001',goodname:'rice',price:3,rate:3},
+                {id:'st002',goodname:'noodles',price:6,rate:3},
+            ],
+            drinks:[
+                {id:'dk001',goodname:'beer',price:5,rate:3},
+                {id:'dk002',goodname:'soft',price:3.5,rate:3},
+                {id:'dk003',goodname:'juice',price:10,rate:3},
+            ],
             
         }
     },
@@ -101,10 +143,10 @@ $h:100%;
                 height: 140px;
                 display:flex;
                 padding:15px 40px;
-                // justify-content: space-around;
                 align-items: center;
                 flex-wrap: wrap;
                 margin-bottom: 15px;
+
                 .uItems{
                     padding:8px 14px;
                     background: #fff;
@@ -130,12 +172,16 @@ $h:100%;
             }
             
         }
+        .sGoodsContent{
+            @include flx(row);
+        }
         .goodsItem{
             width:200px;
-            height: 80px;
+            height: 160px;
             padding:3px;
             box-sizing: border-box;
             background: #fff;
+            margin:10px 20px;
             @include flx(row);
             .goodsPic{
                 width:74px;

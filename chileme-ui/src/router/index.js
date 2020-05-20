@@ -21,6 +21,11 @@ Vue.use(VueRouter)
         path:'/goods',
         name:'Goods',
         component: () => import('../views/Goods.vue')
+      },
+      {
+        path:'/lifeCycle',
+        name:'LifeCycle',
+        component: () => import('../views/LifeCycle.vue')
       }
     ]
   },

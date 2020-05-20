@@ -11,6 +11,13 @@ export default {
         return{
             orderTable:[]
         }
+    },
+    props:['ordersList'], //接收父组件绑定给子组件的数据
+    mounted(){
+        console.log(this.ordersList)
+        // 将接收到的数据赋值给定义好的存放订单数据的数组
+        this.orderTable = this.ordersList 
+
     }
 }
 </script>

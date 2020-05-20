@@ -1,7 +1,7 @@
 <template lang="pug">
     div.carts
         el-table(:data='cartsTable',border)
-            el-table-column(prop="goodsname",label="商品")
+            el-table-column(prop="goodname",label="商品")
             el-table-column(prop="num",label="数量")
             el-table-column(prop="price",label="金额")
             el-table-column(prop="methods",label="操作")
@@ -17,6 +17,10 @@ export default {
         return{
             cartsTable:[],
         }
+    },
+    props:['cartsList'],
+    mounted(){
+        this.cartsTable = this.cartsList
     },
     computed:{
         total(){

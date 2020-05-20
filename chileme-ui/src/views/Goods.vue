@@ -3,18 +3,18 @@
         el-row
             el-col(:span='8') 
                 div.cortsAndOrder
-                    el-tabs(v-model="activeName")
+                    el-tabs
                         el-tab-pane(label="点餐",name="first")
-                            Carts
+                            Carts(:cartsList="cartsList")
                         el-tab-pane(label="订单",name="second")
-                            Order   
+                            Order(:ordersList="ordersList")   
             el-col(:span='16')
                 div.menu
                     //- 常用商品
                     div.usuallyGoods
                         h1.goodsTitle 常用商品
                         div.goodsContent
-                            div.uItems(v-for='o in uGoods',:key='o.id')
+                            div.uItems(v-for='o in uGoods',:key='o.id',@click='addToCarts(o)')
                                 span.uItemsName {{o.goodname}}
                                 span.uItemsPrice  {{`￥${o.price}元`}}
                     //- 商品分类
@@ -23,7 +23,7 @@
                             el-tab-pane(label="热菜" )
                                 div
                                     div.sGoodsContent
-                                        div.goodsItem(v-for='item in hotFoods',:key='item.id')
+                                        div.goodsItem(v-for='item in hotFoods',:key='item.id',@click='addToCarts(item)')
                                             div.goodsPic 
                                             div.goodsDes 
                                                 div.goodsDesName {{item.goodname}}
@@ -32,7 +32,7 @@
                             el-tab-pane(label="凉菜" )
                                 div
                                     div.sGoodsContent
-                                        div.goodsItem(v-for='item in coldFoods',:key='item.id')
+                                        div.goodsItem(v-for='item in coldFoods',:key='item.id',@click='addToCarts(item)')
                                             div.goodsPic 
                                             div.goodsDes 
                                                 div.goodsDesName {{item.goodname}}
@@ -40,7 +40,7 @@
                             el-tab-pane(label="主食" )
                                 div
                                     div.sGoodsContent
-                                        div.goodsItem(v-for='item in stampFood',:key='item.id')
+                                        div.goodsItem(v-for='item in stampFood',:key='item.id',@click='addToCarts(item)')
                                             div.goodsPic 
                                             div.goodsDes 
                                                 div.goodsDesName {{item.goodname}}
@@ -48,7 +48,7 @@
                             el-tab-pane(label="饮料" )
                                 div
                                     div.sGoodsContent
-                                        div.goodsItem(v-for='item in drinks',:key='item.id')
+                                        div.goodsItem(v-for='item in drinks',:key='item.id',@click='addToCarts(item)')
                                             div.goodsPic 
                                             div.goodsDes 
                                                 div.goodsDesName {{item.goodname}}
@@ -101,11 +101,33 @@ export default {
                 {id:'dk002',goodname:'soft',price:3.5,rate:3},
                 {id:'dk003',goodname:'juice',price:10,rate:3},
             ],
+            cartsList:[], //购物车数据
+            ordersList:[
+                {orderNo:'ODR00001',date:'2020-05-20 15:18',price:100,id:'odr01'},
+                {orderNo:'ODR00002',date:'2020-05-21 15:18',price:200,id:'odr02'},
+                {orderNo:'ODR00003',date:'2020-05-22 15:18',price:300,id:'odr03'},
+            ] // 订单数据
             
         }
     },
     components:{
         Carts,Order
+    },
+    methods:{
+        addToCarts(item){
+            let flag = false //默认商品在购物车中不存在
+            // 遍历购物车数组
+            for(let i=0;i<this.cartsList.length;i++){
+                // 判断购物车中的商品和新加入购物车的商品是否相同
+                if(this.cartsList[i].id === item.id){ // 若相同则说明该商品在购物车中已存在
+                    flag = true
+                    break  //提高循环的执行效率
+                }
+            }
+            if(!flag) this.cartsList.push(item)
+
+            console.log(this.cartsList)
+        }
     }
 }
 </script>

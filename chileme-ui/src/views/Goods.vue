@@ -113,6 +113,12 @@ export default {
     components:{
         Carts,Order
     },
+    mounted(){
+        // 组件渲染完成之后自动触发
+        this.getFoodsData() // 获取菜品数据
+        this.getCartsData() // 获取购物车数据
+        this.getOrderData() // 获取订单数据
+    },
     methods:{
         addToCarts(item){
             let flag = false //默认商品在购物车中不存在
@@ -127,6 +133,90 @@ export default {
             if(!flag) this.cartsList.push(item)
 
             console.log(this.cartsList)
+        },
+        // 获取菜品数据
+        getFoodsData(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
+        // 向购物车中添加商品
+        addGoods(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
+        // 查询购物车中商品数据
+        getCartsData(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
+        // 删除购物车中的商品数据
+        deleGoods(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
+        // 创建订单
+        addOrder(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
+        // 查询订单
+        getOrderData(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
+        // 删除订单
+        deleOrder(){
+            this.Axios({
+                method:GET, //请求方式
+                url:'', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
         }
     }
 }

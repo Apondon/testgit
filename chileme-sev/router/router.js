@@ -10,7 +10,7 @@ const router = new Router()  // 对路由进行实例化
 // 接口
 // test
 router.get('/',async ctx => {
-    ctx.body = 'hello'
+    ctx.body = 'hello！！！'
 })
 router.get('/test',async ctx => {
     ctx.body = 'test'

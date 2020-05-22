@@ -2,7 +2,25 @@ const Carts = require('../model/carts_schema')
 
 // 查询购物车数据
 const queryCartsData = async ctx => {
-    ctx.body = '查询购物车数据成功'
+    // ctx.body = '查询购物车数据成功'
+    await Carts.find().then(data => { //等待数据库查询完成执行对应操作
+        // 查询成功对应的操作
+        console.log(data)
+        ctx.body = {
+            code:200,
+            success:true,
+            msg:'查询成功',
+            list:data
+        }
+    }).catch(err => {
+        // 查询失败对应的操作
+        console.log(err)
+        ctx.body = {
+            code:200,
+            success:false,
+            msg:'查询失败'
+        }
+    })
 }
 // 向购物车中增加商品
 const addGoods = async function(ctx){

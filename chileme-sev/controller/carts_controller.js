@@ -2,7 +2,9 @@ const Carts = require('../model/carts_schema')
 
 // 查询购物车数据
 const queryCartsData = async ctx => {
-    // ctx.body = '查询购物车数据成功'
+    // get请求
+    let req = ctx.request.query
+    console.log(req)
     await Carts.find().then(data => { //等待数据库查询完成执行对应操作
         // 查询成功对应的操作
         console.log(data)
@@ -24,6 +26,8 @@ const queryCartsData = async ctx => {
 }
 // 向购物车中增加商品
 const addGoods = async function(ctx){
+    let req = ctx.request.body
+    console.log(req)
     ctx.body = '新增商品成功'
 }
 // 从购物车中删除商品

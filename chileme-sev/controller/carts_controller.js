@@ -28,11 +28,27 @@ const queryCartsData = async ctx => {
 const addGoods = async function(ctx){
     let req = ctx.request.body
     console.log(req)
-    await Goods.findOne({goodsId:req.goodsId}) //去商品数据集合中查询商品数据
-    .then(res => { //查询成功后对查询结果res进行操作
-        console.log(res) //未查询到结果返回null
+    await Goods.findOne({goodsId:req.goodsId}) //去商品数据集合中查询商品数据  
+    .then(res => { //查询成功后对查询结果res进行操作  res = {} / null  成功查询数据 --->{}   未成功查询数据 ----> null
+        console.log(res) //未查询到结果返回null                  
+        // 判断是否查询到了数据
+        if(!!res){ // !!res 将res转换为res对应的boolean类型的值                  !!{} == true    !!null == false
+            // 数据库中查询到了对应数据
+        }else{ // !!null == false
+            // 数据库中未查询到对应数据
+            ctx.body={
+                success:false,
+                msg:'该商品在数据库中不存在'
+            }
+        }
     }).catch(err => { // 查询失败后对查询失败的结果 res进行操作
-        console.log(err)
+        // 有可能是数据库挂掉了 导致查询查询操作执行失败
+        console.log(err)   // err是失败的信息
+        // 告诉请求方，本次数据库操作出现异常
+        ctx.body={
+            success:false,
+            msg:'数据库操作异常'
+        }
     })
     ctx.body = '新增商品成功'
 }

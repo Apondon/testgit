@@ -125,7 +125,7 @@ export default {
                 method:'POST',
                 url:'/api/carts/addGoods',
                 data:{
-                    goodsId:item.id
+                    goodsId:1587949603505
                 }
             })
             .then(res => {  // 对请求成功的结果进行处理   res成功的结果
@@ -134,17 +134,6 @@ export default {
             .catch(function(err){ // 对请求失败的结果进行处理   err失败的结果
                 console.log(err)
             })
-            // let flag = false //默认商品在购物车中不存在
-            // // 遍历购物车数组
-            // for(let i=0;i<this.cartsList.length;i++){
-            //     // 判断购物车中的商品和新加入购物车的商品是否相同
-            //     if(this.cartsList[i].id === item.id){ // 若相同则说明该商品在购物车中已存在
-            //         flag = true
-            //         break  //提高循环的执行效率
-            //     }
-            // }
-            // if(!flag) this.cartsList.push(item)
-            // console.log(this.cartsList)
         },
         // 获取菜品数据
         getFoodsData(){

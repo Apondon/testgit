@@ -30,6 +30,6 @@ router.get('/api/user/getGoodsItem',Goods.getGoodsItem) //查询单个商品详�
 router.get('/api/carts/queryCartsData',Carts.queryCartsData) //查询购物车数据
 router.post('/api/carts/addGoods' , Carts.addGoods) // 向购物车中添加商品
 router.post('/api/carts/deleGoods' , Carts.deleGoods) // 向购物车中删除商品
-
+router.get('/api/carts/deleteAll' , Carts.deleteAll) // 删除全部商品
 // 4.暴露接口
 module.exports = router

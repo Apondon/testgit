@@ -5,7 +5,7 @@
                 div.cortsAndOrder
                     el-tabs
                         el-tab-pane(label="点餐",name="first")
-                            Carts(:cartsList="cartsList")
+                            Carts(:cartsList="cartsList",v-on:dianji='receiveHandle',v-on:shanchu="getCartsData")
                         el-tab-pane(label="订单",name="second")
                             Order(:ordersList="ordersList")   
             el-col(:span='16')
@@ -89,8 +89,15 @@ export default {
         this.getOrderData() // 获取订单数据
     },
     methods:{
+        // 用来接收从子组件传递过来的数据
+        receiveHandle(arg){
+            console.log('-----父组件-----')
+            console.log(arg) // 子组件传递过来的实参
+            this.deleGoods(arg)
+        },
         // 向购物车中添加商品
         addToCarts(item){
+            // this.receiveHandle('a')
             this.Axios({
                 method:'POST',
                 url:'/api/carts/addGoods',
@@ -99,7 +106,8 @@ export default {
                 }
             })
             .then(res => {  // 对请求成功的结果进行处理   res成功的结果
-                console.log(res)
+                // console.log(res)
+                // 添加完商品之后去更新购物车数据
                 this.getCartsData()
             })
             .catch(function(err){ // 对请求失败的结果进行处理   err失败的结果
@@ -129,27 +137,32 @@ export default {
             }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
                 console.log(err)
             })
-        },
-        
+        },   
         // 查询购物车中商品数据
         getCartsData(){
             this.Axios({
                 method:'GET', //请求方式
                 url:'/api/carts/queryCartsData', // 请求地址
             }).then(res => { //请求成功的回调函数  res请求返回的结果
-                console.log(res)
+                console.log(res.data.list)
+                // 对购物车数据进行赋值
+                this.cartsList = res.data.list
             }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
                 console.log(err)
             })
         },
         // 删除购物车中的商品数据
-        deleGoods(){
+        deleGoods(item){
             this.Axios({
-                method:'GET', //请求方式
-                url:'', // 请求地址
-                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+                method:'POST', //请求方式
+                url:'/api/carts/deleGoods', // 请求地址
+                data:{
+                    goodsId:item.goodsId
+                }, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
             }).then(res => { //请求成功的回调函数  res请求返回的结果
-                console.log(res)
+                // console.log(res)
+                // 删除操作成功之后进行页面数据更新
+                this.getCartsData()
             }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
                 console.log(err)
             })

@@ -167,18 +167,7 @@ export default {
                 console.log(err)
             })
         },
-        // 创建订单
-        addOrder(){
-            this.Axios({
-                method:'GET', //请求方式
-                url:'', // 请求地址
-                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
-            }).then(res => { //请求成功的回调函数  res请求返回的结果
-                console.log(res)
-            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
-                console.log(err)
-            })
-        },
+        
         // 查询订单
         getOrderData(){
             this.Axios({

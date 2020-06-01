@@ -3,6 +3,7 @@ const Router = require('koa-router') // 引入koa-router
 const User = require('../controller/user_controller')
 const Goods = require('../controller/goods_controller')
 const Carts = require('../controller/carts_controller')
+const Order = require('../controller/order_controller')
 // 2.对koa-router 进行实例化
 const router = new Router()  // 对路由进行实例化
 // 3.定义接口
@@ -25,11 +26,17 @@ router.post('/api/user/addGoods',Goods.addGoods) //添加商品
 router.get('/api/user/getGoodsList',Goods.getGoodsList) //查询商品列表
 router.get('/api/user/getGoodsItem',Goods.getGoodsItem) //查询单个商品详情
 // 订单接口
+router.get('/api/order/findOrder',Order.findOrder) // 查询订单
+router.post('/api/order/addOrder',Order.addOrder)// 新增订单
+router.post('/api/order/dropOrder',Order.dropOrder) //删除订单
+
 
 // 购物车接口
 router.get('/api/carts/queryCartsData',Carts.queryCartsData) //查询购物车数据
 router.post('/api/carts/addGoods' , Carts.addGoods) // 向购物车中添加商品
 router.post('/api/carts/deleGoods' , Carts.deleGoods) // 向购物车中删除商品
 router.get('/api/carts/deleteAll' , Carts.deleteAll) // 删除全部商品
+
+
 // 4.暴露接口
 module.exports = router

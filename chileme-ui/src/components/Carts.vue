@@ -9,7 +9,7 @@
                     el-button(type="text",size="small",@click="deleteHandle(scope.row)") 删除
         el-divider  
         el-button(type='danger',@click="deleteAllGoods") 清空
-        el-button(type='success') 结算 
+        el-button(type='success',@click="addOrder") 结算 
 </template>
 <script>
 export default {
@@ -34,7 +34,19 @@ export default {
             }).catch(err => {
                 console.log(err)
             })
-        }
+        },
+        // 创建订单
+        addOrder(){
+            this.Axios({
+                method:'POST', //请求方式
+                url:'/api/order/addOrder', // 请求地址
+                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+            }).then(res => { //请求成功的回调函数  res请求返回的结果
+                console.log(res)
+            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
+                console.log(err)
+            })
+        },
     }
 }
 </script>

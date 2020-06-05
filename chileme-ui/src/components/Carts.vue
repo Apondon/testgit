@@ -53,6 +53,10 @@ export default {
                 }, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
             }).then(res => { //请求成功的回调函数  res请求返回的结果
                 console.log(res)
+                // 更新购物车数据
+                this.$emit('shanchu')
+                // 更新订单数据
+                this.$emit('dingdan')
             }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
                 console.log(err)
             })

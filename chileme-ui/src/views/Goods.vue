@@ -5,9 +5,10 @@
                 div.cortsAndOrder
                     el-tabs
                         el-tab-pane(label="点餐",name="first")
-                            Carts(:cartsList="cartsList",v-on:dianji='receiveHandle',v-on:shanchu="getCartsData")
+                            Carts(:cartsList="cartsList",v-on:dianji='receiveHandle',
+                            v-on:shanchu="getCartsData",v-on:dingdan='getOrderData')
                         el-tab-pane(label="订单",name="second")
-                            Order(:ordersList="ordersList")   
+                            Order(:ordersList="ordersList",v-on:dingdan='getOrderData')   
             el-col(:span='16')
                 div.menu
                     //- 常用商品
@@ -71,11 +72,7 @@ export default {
             stampFood:[],
             drinks:[],
             cartsList:[], //购物车数据
-            ordersList:[
-                {orderNo:'ODR00001',date:'2020-05-20 15:18',price:100,id:'odr01'},
-                {orderNo:'ODR00002',date:'2020-05-21 15:18',price:200,id:'odr02'},
-                {orderNo:'ODR00003',date:'2020-05-22 15:18',price:300,id:'odr03'},
-            ] // 订单数据
+            ordersList:[] // 订单数据
             
         }
     },
@@ -172,26 +169,14 @@ export default {
         getOrderData(){
             this.Axios({
                 method:'GET', //请求方式
-                url:'', // 请求地址
-                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
+                url:'/api/order/findOrder', // 请求地址          
             }).then(res => { //请求成功的回调函数  res请求返回的结果
-                console.log(res)
+                console.log(res.data)
+                this.ordersList = res.data.list
             }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
                 console.log(err)
             })
         },
-        // 删除订单
-        deleOrder(){
-            this.Axios({
-                method:'', //请求方式
-                url:'', // 请求地址
-                data:{}, // 请求携带的参数，若该请求不需要携带参数，则可以忽略该属性            
-            }).then(res => { //请求成功的回调函数  res请求返回的结果
-                console.log(res)
-            }).catch(err => { // 请求失败的回调函数   err请求失败的返回结果
-                console.log(err)
-            })
-        }
     }
 }
 </script>
